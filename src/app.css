@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+    --foreground: 13 13 13;
+    --foreground-muted: 60 60 60;
+    --primary: 229 229 229;
+    --secondary: 242 242 242;
+    --tertiary: 255 255 255;
+    --border: 192 192 192;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    background: var(--primary);
+    color: var(--foreground);
+}
