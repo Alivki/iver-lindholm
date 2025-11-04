@@ -2,9 +2,9 @@
 
 Welcome to my spot on the world wide web! This is my portfolio website, built with **SolidJS**, where I showcase my work, skills, and journey as a developer. Explore my projects, learn about me, and see what I'm all about! 🚀
 
-<img width="2544" height="1400" alt="image" src="https://github.com/user-attachments/assets/fda2cb40-c3bb-40e2-ab51-28277626e25f" />
+<img width="2528" height="1402" alt="image" src="https://github.com/user-attachments/assets/a6ef5098-dbc1-479c-bd93-567d6d8761b5" />
 
-👉 **Live Site**: [iver-lindholm.com](https://iverlindholm.no) (Update with your actual domain)  
+👉 **Live Site**: [iver-lindholm.com](https://iverlindholm.no)
 👉 **GitHub Repository**: [Alivki/iver-lindholm](https://github.com/Alivki/iver-lindholm)
 
 ---
@@ -58,14 +58,15 @@ pnpm dev
 ---
 ## Project Structure
 
+```bash
 iver-lindholm/
-├── src/ # Source files (components, routes, UI logic)
-├── public/ # Static assets (images, metadata, etc.)
-├── app.config.js # SolidStart configuration
+├── src/              # Source files (components, routes, UI logic)
+├── public/           # Static assets (images, metadata, etc.)
+├── app.config.js     # SolidStart configuration
 ├── tailwind.config.cjs # Tailwind CSS configuration
-├── package.json # Project metadata and scripts
-└── README.md # You are here!
-
+├── package.json      # Project metadata and scripts
+└── README.md         # You are here!
+```
 ---
 
 ## Contact 📬
