@@ -1,32 +1,91 @@
-# SolidStart
+# Iver Lindholm's Portfolio Website 🌟
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+Welcome to my spot on the world wide web! This is my portfolio website, built with **SolidJS**, where I showcase my work, skills, and journey as a developer. Explore my projects, learn about me, and see what I'm all about! 🚀
 
-## Creating a project
+<img width="2544" height="1400" alt="image" src="https://github.com/user-attachments/assets/fda2cb40-c3bb-40e2-ab51-28277626e25f" />
+
+👉 **Live Site**: [iver-lindholm.com](https://iverlindholm.no) (Update with your actual domain)  
+👉 **GitHub Repository**: [Alivki/iver-lindholm](https://github.com/Alivki/iver-lindholm)
+
+---
+
+## 📖 Table of Contents
+- [Tech Stack](#tech-stack-️)
+- [Getting Started](#getting-started-)
+- [Project Structure](#project-structure)
+- [Contact](#contact-)
+- [License](#license-)
+
+---
+
+## Tech Stack 🛠️
+
+This portfolio is powered by modern and lightweight tools:
+
+| Category | Technology |
+|--------|------------|
+| Framework | **SolidJS** |
+| Styling | **Tailwind CSS** |
+| Deployment | **Vercel** |
+| Version Control | **Git** |
+| Linting / Code Quality | **ESLint** |
+
+---
+
+## Getting Started ⚙️
+
+Follow the steps below to run this project locally.
+
+### Prerequisites
+Make sure you have the following installed:
+- **Node.js**
+- **npm**, **pnpm**, or **yarn**
+- **Git**
+
+### Installation
 
 ```bash
-# create a new project in the current directory
-npm init solid@latest
+# Clone the repository
+git clone https://github.com/Alivki/iver-lindholm.git
+cd iver-lindholm
 
-# create a new project in my-app
-npm init solid@latest my-app
+# Install dependencies
+pnpm install   
+
+# Start the development server
+pnpm dev
 ```
+---
+## Project Structure
 
-## Developing
+iver-lindholm/
+├── src/ # Source files (components, routes, UI logic)
+├── public/ # Static assets (images, metadata, etc.)
+├── app.config.js # SolidStart configuration
+├── tailwind.config.cjs # Tailwind CSS configuration
+├── package.json # Project metadata and scripts
+└── README.md # You are here!
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+---
 
-```bash
-npm run dev
+## Contact 📬
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+I’d love to connect — whether you're interested in collaboration, have feedback, or just want to say hello!
 
-## Building
+| Platform | Link |
+|---------|------|
+| 📧 Email | iver.lindholm@gmail.com |
+| 💼 LinkedIn | [https://www.linkedin.com/in/iver-lindholm/](https://www.linkedin.com/in/iver-lindholm/ |
+| 🌐 Portfolio / Website | [iverlindholm.no](https://iverlindholm.no) |
 
-Solid apps are built with _presets_, which optimise your project for deployment to different environments.
+---
 
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different preset, add it to the `devDependencies` in `package.json` and specify in your `app.config.js`.
+## License 📝
 
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+This project is licensed under the **MIT License**.  
+See the `LICENSE` file for more information.
+
+---
+
+Built with 💖 by **Iver Lindholm**  
+© 2025 All rights reserved.
