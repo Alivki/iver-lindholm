@@ -76,7 +76,7 @@ I’d love to connect — whether you're interested in collaboration, have feedb
 | Platform | Link |
 |---------|------|
 | 📧 Email | iver.lindholm@gmail.com |
-| 💼 LinkedIn | [https://www.linkedin.com/in/iver-lindholm/](https://www.linkedin.com/in/iver-lindholm/ |
+| 💼 LinkedIn | [https://www.linkedin.com/in/iver-lindholm/](https://www.linkedin.com/in/iver-lindholm/) |
 | 🌐 Portfolio / Website | [iverlindholm.no](https://iverlindholm.no) |
 
 ---
