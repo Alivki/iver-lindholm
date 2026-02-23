@@ -1,23 +1,27 @@
-<script>
+<script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
-	import { lastUpdated } from '$lib/lastUpdated.ts';
+	import { base } from '$app/paths';
 	import { tick } from 'svelte';
 
-	let hoveredWorkIndex = $state(null);
+	let hoveredWorkIndex = $state<number | null>(null);
 	let previewTop = $state(0);
-	let previewContainerEl = $state(null);
-	let hoveredRowEl = $state(null);
+	let previewContainerEl = $state<HTMLElement | null>(null);
+	let hoveredRowEl = $state<HTMLElement | null>(null);
 
 	$effect(() => {
-		if (hoveredWorkIndex === null || !previewContainerEl || !hoveredRowEl) return;
+		const idx = hoveredWorkIndex;
+		const container = previewContainerEl;
+		const row = hoveredRowEl;
+		if (idx === null || !container || !row) return;
 		tick().then(() => {
-			const rowRect = hoveredRowEl.getBoundingClientRect();
-			const containerRect = previewContainerEl.getBoundingClientRect();
-			// Position so the vertical center of the preview aligns with the center of the row
+			const rowRect = row.getBoundingClientRect();
+			const containerRect = container.getBoundingClientRect();
 			const rowCenterY = rowRect.top + rowRect.height / 2;
 			previewTop = rowCenterY - containerRect.top;
 		});
 	});
+
 
 	const workItems = [
 		{ title: 'Index', role: 'Fullstack', period: 'Present', image: 'https://picsum.photos/600/400?random=1', link: 'https://example.com/index' },
@@ -75,7 +79,7 @@
 					<div class="opacity-0 text-sm hidden md:block">about</div>
 				</div>
 				<div class="w-full flex flex-col min-w-0">
-					{#each workItems as work, i}
+					{#each workItems as work, i (work.link + i)}
 						<a
 							href={work.link}
 							target="_blank"
@@ -110,7 +114,7 @@
 					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">School</p>
 				</div>
 				<div class="w-full flex flex-col min-w-0">
-					{#each schoolItems as school}
+					{#each schoolItems as school (school.title + school.period)}
 						<div class="flex items-start gap-3 pb-1">
 							<p class="text-sm whitespace-nowrap leading-none mt-0.5">{school.title}</p>
 							<div class="flex-1 h-[1px] bg-gray-300 rounded self-center min-w-0"></div>
@@ -128,9 +132,9 @@
 					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Extras</p>
 				</div>
 				<div class="w-full flex flex-col min-w-0">
-					{#each extrasItems as extra}
+					{#each extrasItems as extra (extra.title)}
 						<a
-							href={extra.link}
+							href={base + extra.link}
 							download={extra.download || undefined}
 							target={extra.download ? undefined : '_blank'}
 							rel={extra.download ? undefined : 'noopener noreferrer'}
@@ -166,7 +170,7 @@
 				<div class="opacity-0 text-sm hidden md:block">about</div>
 			</div>
 			<div class="w-full flex flex-col min-w-0">
-				{#each socialItems as social}
+				{#each socialItems as social (social.title)}
 					<a
 						href={social.link}
 						target="_blank"
