@@ -1,4 +1,19 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@font-face {
+	font-family: 'Geist Mono';
+	src: url('https://unpkg.com/geist@1.7.0/dist/fonts/geist-mono/GeistMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+:root {
+	--font-geist-mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+html {
+	scroll-behavior: smooth;
+}
 
 @keyframes work-preview-fade {
 	from {
@@ -19,4 +34,186 @@
 	box-shadow: 0 35px 60px -15px rgb(0 0 0 / 0.3);
 	border-color: rgb(37 99 235);
 	transform: translateY(-50%) scale(1.02);
+}
+
+/* Work prose: code blocks - white style, title, line numbers, colored highlights */
+.work-prose figure[data-rehype-pretty-code-figure] {
+	margin: 1.5rem 0;
+	border-radius: 0.75rem;
+	overflow: hidden;
+	border: 1px solid rgb(229 231 235);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+	max-width: 100%;
+	background: #ffffff;
+}
+.work-prose [data-rehype-pretty-code-title],
+.work-prose figcaption[data-rehype-pretty-code-title] {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 1rem 0.5rem;
+	padding-top: 0;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: rgb(161 161 170);
+	background: #ffffff;
+	border-bottom: 1px solid rgb(229 231 235);
+	font-family: var(--font-geist-mono);
+}
+.work-prose figure[data-rehype-pretty-code-figure] pre,
+.work-prose pre {
+	overflow-x: auto;
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+	background: #ffffff !important;
+}
+.work-prose figure[data-rehype-pretty-code-figure] pre[style] {
+	background: #ffffff !important;
+}
+.work-prose pre code {
+	display: block;
+	--gutter: 2.75rem;
+	padding: 1rem 1rem 1rem var(--gutter);
+	min-width: min-content;
+	font-size: 0.8125rem;
+	line-height: 1.7;
+	font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+	background: #ffffff !important;
+}
+/* Shiki syntax colors - dual theme injects --shiki-light/--shiki-dark vars */
+.work-prose code[data-theme*=' '],
+.work-prose code[data-theme*=' '] span {
+	color: var(--shiki-light);
+}
+.work-prose code[data-theme*=' '] {
+	background-color: #ffffff !important;
+}
+/* Keep light theme colors and white bg even in dark mode */
+@media (prefers-color-scheme: dark) {
+	.work-prose code[data-theme*=' '],
+	.work-prose code[data-theme*=' '] span {
+		color: var(--shiki-light) !important;
+	}
+	.work-prose code[data-theme*=' '] {
+		background-color: #ffffff !important;
+	}
+}
+.work-prose pre span[data-line],
+.work-prose pre [data-line] {
+	padding: 0 1rem 0 0.75rem;
+}
+/* Line numbers - gutter at left, numbers pulled into gutter */
+.work-prose code[data-line-numbers] {
+	counter-reset: line;
+	position: relative;
+	--gutter: 2.75rem;
+}
+.work-prose code[data-line-numbers]::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: var(--gutter);
+	background: #ffffff;
+	pointer-events: none;
+}
+.work-prose code[data-line-numbers] > span[data-line]::before,
+.work-prose code[data-line-numbers] > [data-line]::before {
+	margin-left: calc(-1 * var(--gutter));
+}
+.work-prose code[data-line-numbers] > span[data-line]::before,
+.work-prose code[data-line-numbers] > [data-line]::before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	min-width: 2.5ch;
+	margin-right: 1rem;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	font-family: var(--font-geist-mono);
+	color: rgb(161 161 170);
+	font-size: 0.8rem;
+	user-select: none;
+}
+.work-prose code[data-line-numbers] > span[data-line],
+.work-prose code[data-line-numbers] > [data-line] {
+	display: block;
+	position: relative;
+}
+/* Colored line highlights - full width, no right padding */
+/* Override line number position so it aligns with non-highlighted lines */
+.work-prose span[data-line][data-highlighted-line]::before,
+.work-prose [data-line][data-highlighted-line]::before {
+	margin-left: calc(-1 * var(--gutter) - 0.75rem);
+}
+.work-prose span[data-line][data-highlighted-line],
+.work-prose [data-line][data-highlighted-line] {
+	border-left: 3px solid rgb(96 165 250);
+	background: rgb(219 234 254);
+	margin-left: calc(-1 * var(--gutter));
+	margin-right: -1rem;
+	padding-left: calc(var(--gutter) + 0.75rem);
+	padding-right: 1rem;
+}
+.work-prose span[data-line][data-highlighted-line-id='add'],
+.work-prose [data-line][data-highlighted-line-id='add'] {
+	border-left: 3px solid rgb(34 197 94);
+	background: rgb(220 252 231);
+	margin-left: calc(-1 * var(--gutter));
+	margin-right: -1rem;
+	padding-left: calc(var(--gutter) + 0.75rem);
+	padding-right: 1rem;
+}
+.work-prose span[data-line][data-highlighted-line-id='remove'],
+.work-prose [data-line][data-highlighted-line-id='remove'] {
+	border-left: 3px solid rgb(239 68 68);
+	background: rgb(254 226 226);
+	margin-left: calc(-1 * var(--gutter));
+	margin-right: -1rem;
+	padding-left: calc(var(--gutter) + 0.75rem);
+	padding-right: 1rem;
+}
+/* Mobile: prevent overflow */
+.work-prose blockquote {
+	max-width: 100%;
+	overflow-wrap: break-word;
+}
+.work-prose pre,
+.work-prose table {
+	max-width: 100%;
+}
+.work-prose table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: 0.875rem;
+	border-radius: 0.75rem;
+	overflow: hidden;
+	border: 1px solid rgb(241 245 249);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+.work-prose th,
+.work-prose td {
+	padding: 0.5rem 0.75rem;
+	border: 1px solid rgb(241 245 249);
+	text-align: left;
+}
+.work-prose th {
+	background: rgb(249 250 251);
+	font-weight: 600;
+	color: rgb(17 24 39);
+}
+.work-prose thead th:first-child {
+	border-top-left-radius: 0.625rem;
+}
+.work-prose thead th:last-child {
+	border-top-right-radius: 0.625rem;
+}
+.work-prose tbody tr:last-child td:first-child {
+	border-bottom-left-radius: 0.625rem;
+}
+.work-prose tbody tr:last-child td:last-child {
+	border-bottom-right-radius: 0.625rem;
 }

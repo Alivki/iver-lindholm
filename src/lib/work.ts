@@ -4,47 +4,45 @@ export type WorkItem = {
 	role: string;
 	period: string | null;
 	image: string;
-	/** Optional external URL (e.g. live site). Shown on the work post page. */
 	externalLink?: string;
-	/** Optional custom writeup (HTML). When set, shown instead of the default placeholder. */
-	body?: string;
 };
 
-export const workItems: WorkItem[] = [
-	{
-		slug: 'index',
-		title: 'Index',
-		role: 'Fullstack',
-		period: 'Present',
-		image: '/cover-image.jpg',
-		externalLink: 'https://example.com/index'
-	},
-	{
-		slug: 'texicon',
-		title: 'Texicon',
-		role: 'Fullstack',
-		period: 'Present',
-		image: '/texicon.webp',
-		externalLink: 'https://example.com/texicon'
-	},
-	{
-		slug: 'fotograf-kirsti-hovde',
-		title: 'Fotograf Kirsti Hovde',
-		role: 'Portfolio website',
-		period: null,
-		image: '/fotokirsti.png',
-		externalLink: 'https://fotokirsti-frontend-production.up.railway.app',
-		body: `
-		<p>
-			Custom portfolio site for photographer Kirsti Hovde. Built with a focus on showcasing her work with a clean, image-led layout.
-		</p>
-		
-		<p class="mt-6">
-			Tech: SvelteKit, Tailwind, deployed on Railway.
-		</p>`
-	}
-];
+const modules = import.meta.glob<{
+	metadata: Record<string, unknown>;
+	default: import('svelte').Component;
+}>('/src/lib/work/*.md', { eager: true });
 
-export function getWorkBySlug(slug: string): WorkItem | undefined {
-	return workItems.find((w) => w.slug === slug);
+export function getWorkItems(): WorkItem[] {
+	return Object.entries(modules).map(([path, mod]) => {
+		const slug = path.split('/').at(-1)?.replace('.md', '') ?? '';
+		const meta = mod.metadata ?? {};
+		return {
+			slug,
+			title: (meta.title as string) ?? slug,
+			role: (meta.role as string) ?? '',
+			period: (meta.period as string | null) ?? null,
+			image: (meta.image as string) ?? '',
+			externalLink: meta.externalLink as string | undefined
+		};
+	});
+}
+
+export function getWorkBySlug(slug: string): {
+	content: import('svelte').Component;
+	meta: WorkItem;
+} | null {
+	const mod = modules[`/src/lib/work/${slug}.md` as keyof typeof modules];
+	if (!mod) return null;
+	const meta = (mod as (typeof modules)[string]).metadata ?? {};
+	return {
+		content: (mod as (typeof modules)[string]).default,
+		meta: {
+			slug,
+			title: (meta.title as string) ?? slug,
+			role: (meta.role as string) ?? '',
+			period: (meta.period as string | null) ?? null,
+			image: (meta.image as string) ?? '',
+			externalLink: meta.externalLink as string | undefined
+		}
+	};
 }

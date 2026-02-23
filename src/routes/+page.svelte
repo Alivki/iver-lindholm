@@ -2,7 +2,9 @@
 	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
 	import { base } from '$app/paths';
-	import { workItems } from '$lib/work';
+
+	let { data } = $props();
+	const workItems = $derived(data?.workItems ?? []);
 	import { tick } from 'svelte';
 
 	let hoveredWorkIndex = $state<number | null>(null);
@@ -41,9 +43,9 @@
 
 <div class="w-full flex flex-col lg:flex-row lg:justify-center min-h-screen my-6 sm:my-10 px-4 sm:px-6">
 	<!-- Left spacer: hidden on mobile/tablet, same width as preview on lg+ so center is centered -->
-	<div class="hidden lg:block w-[min(520px,34vw)] xl:max-w-[500px] flex-shrink-0" aria-hidden="true"></div>
+	<div class="hidden lg:block w-[min(520px,34vw)] xl:max-w-125 shrink-0" aria-hidden="true"></div>
 	<!-- Center column: full width mobile, capped and centered on large screens -->
-	<div class="w-full md:max-w-2xl lg:w-[30vw] lg:min-w-[300px] lg:max-w-xl xl:max-w-2xl min-w-0 flex gap-10 flex-col flex-shrink-0 lg:-translate-x-6">
+	<div class="w-full md:max-w-2xl lg:w-[30vw] lg:min-w-75 lg:max-w-xl xl:max-w-2xl min-w-0 flex gap-10 flex-col shrink-0 lg:-translate-x-6">
 			<div class="flex flex-col md:flex-row md:gap-5 items-stretch">
 				<div class="hidden md:block w-14 shrink-0 opacity-0 select-none pointer-events-none" aria-hidden="true">about</div>
 				<div class="min-w-0 flex-1">
@@ -84,7 +86,7 @@
 						>
 							<div class="flex items-start gap-3">
 								<p class="text-sm whitespace-nowrap leading-none mt-0.5">{work.title}</p>
-								<div class="flex-1 h-[1px] bg-gray-300 rounded self-center min-w-0"></div>
+								<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 								<div class="flex items-center gap-2 whitespace-nowrap">
 									<p class="text-sm">{work.role}</p>
 									{#if work.period}
@@ -109,7 +111,7 @@
 					{#each schoolItems as school (school.title + school.period)}
 						<div class="flex items-start gap-3 pb-1">
 							<p class="text-sm whitespace-nowrap leading-none mt-0.5">{school.title}</p>
-							<div class="flex-1 h-[1px] bg-gray-300 rounded self-center min-w-0"></div>
+							<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 							<div class="flex items-center gap-2 whitespace-nowrap">
 								<p class="text-sm">{school.degree}</p>
 								<p class="text-sm text-gray-500">{school.period}</p>
@@ -133,7 +135,7 @@
 							class="flex items-start gap-3 pb-1 cursor-pointer group/row rounded no-underline text-inherit"
 						>
 							<p class="text-sm whitespace-nowrap leading-none mt-0.5">{extra.title}</p>
-							<div class="flex-1 h-[1px] bg-gray-300 rounded self-center min-w-0"></div>
+							<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 							<div class="flex items-center gap-0 whitespace-nowrap underline-offset-2 group-hover/row:underline group-hover/row:text-blue-600 group-hover/row:decoration-blue-600 decoration-current transition-colors">
 								<p class="text-sm text-gray-500">{extra.label}</p>
 								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 group-hover/row:text-blue-600 transition-colors shrink-0" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
@@ -170,7 +172,7 @@
 						class="flex items-start gap-3 pb-1 cursor-pointer group/row rounded"
 					>
 						<p class="text-sm whitespace-nowrap leading-none mt-0.5">{social.title}</p>
-						<div class="flex-1 h-[1px] bg-gray-300 rounded self-center min-w-0"></div>
+						<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 						<div class="flex items-center gap-0 whitespace-nowrap underline-offset-2 group-hover/row:underline group-hover/row:text-blue-600 group-hover/row:decoration-blue-600 decoration-current transition-colors">
 							<p class="text-sm text-gray-500">{social.handle}</p>
 							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 group-hover/row:text-blue-600 transition-colors shrink-0" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
@@ -183,7 +185,7 @@
 
 	<!-- Preview column: hidden on mobile/tablet, same width as left spacer on lg+ -->
 	<div
-		class="hidden lg:block w-[min(520px,34vw)] xl:max-w-[500px] flex-shrink-0 relative pl-4"
+		class="hidden lg:block w-[min(520px,34vw)] xl:max-w-125 shrink-0 relative pl-4"
 		bind:this={previewContainerEl}
 		style="min-height: 420px;"
 	>

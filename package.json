@@ -38,6 +38,13 @@
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-		"lucide-svelte": "^0.575.0"
+		"@svelte-dev/pretty-code": "^1.0.0",
+		"@tailwindcss/typography": "^0.5.19",
+		"geist": "^1.7.0",
+		"lucide-svelte": "^0.575.0",
+		"mdsvex": "^0.12.6",
+		"rehype-pretty-code": "^0.14.1",
+		"rehype-slug": "^6.0.0",
+		"shiki": "^3.22.0"
 	}
 }
