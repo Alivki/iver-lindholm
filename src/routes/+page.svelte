@@ -2,6 +2,7 @@
 	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
 	import { base } from '$app/paths';
+	import { workItems } from '$lib/work';
 	import { tick } from 'svelte';
 
 	let hoveredWorkIndex = $state<number | null>(null);
@@ -22,12 +23,6 @@
 		});
 	});
 
-
-	const workItems = [
-		{ title: 'Index', role: 'Fullstack', period: 'Present', image: '/cover-image.jpg', link: 'https://example.com/index' },
-		{ title: 'Texicon', role: 'Fullstack', period: 'Present', image: '/texicon.webp', link: 'https://example.com/texicon' },
-		{ title: 'Fotograf Kirsti Hovde', role: 'Portfolio website', period: null, image: '/fotokirsti.png', link: 'https://fotokirsti-frontend-production.up.railway.app' },
-	];
 
 	const socialItems = [
 		{ title: 'LinkedIn', handle: 'Follow', link: 'https://linkedin.com' },
@@ -78,11 +73,9 @@
 					<div class="opacity-0 text-sm hidden md:block">about</div>
 				</div>
 				<div class="w-full flex flex-col min-w-0">
-					{#each workItems as work, i (work.link + i)}
+					{#each workItems as work, i (work.slug)}
 						<a
-							href={work.link}
-							target="_blank"
-							rel="noopener noreferrer"
+							href={base + '/work/' + work.slug}
 							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"
 							role="button"
 							tabindex="0"
@@ -196,9 +189,7 @@
 	>
 		{#if hoveredWorkIndex !== null}
 			<a
-				href={workItems[hoveredWorkIndex].link}
-				target="_blank"
-				rel="noopener noreferrer"
+				href={base + '/work/' + workItems[hoveredWorkIndex].slug}
 				class="work-preview absolute left-4 w-[calc(100%-1rem)] block rounded-xl overflow-hidden border border-gray-200 bg-gray-100 -translate-y-1/2"
 				style="top: {previewTop}px;"
 			>
