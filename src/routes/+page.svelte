@@ -24,10 +24,9 @@
 
 
 	const workItems = [
-		{ title: 'Index', role: 'Fullstack', period: 'Present', image: 'https://picsum.photos/600/400?random=1', link: 'https://example.com/index' },
-		{ title: 'Texicon', role: 'Fullstack', period: 'Present', image: 'https://picsum.photos/600/400?random=2', link: 'https://example.com/texicon' },
-		{ title: 'Fotograf Kirsti Hovde', role: 'Custom website', period: null, image: 'https://picsum.photos/600/400?random=3', link: 'https://fotokirsti-frontend-production.up.railway.app' },
-		{ title: 'Texicon', role: 'Fullstack', period: '2025-current', image: 'https://picsum.photos/600/400?random=2', link: 'https://example.com/texicon' },
+		{ title: 'Index', role: 'Fullstack', period: 'Present', image: '/cover-image.jpg', link: 'https://example.com/index' },
+		{ title: 'Texicon', role: 'Fullstack', period: 'Present', image: '/texicon.webp', link: 'https://example.com/texicon' },
+		{ title: 'Fotograf Kirsti Hovde', role: 'Portfolio website', period: null, image: '/fotokirsti.png', link: 'https://fotokirsti-frontend-production.up.railway.app' },
 	];
 
 	const socialItems = [
