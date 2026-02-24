@@ -3,7 +3,9 @@ title: Texicon
 role: Fullstack
 period: Present
 image: /texicon.webp
-externalLink: https://example.com/texicon
+externalLink: https://texicon.no
 ---
 
-Project description and details can go here.
+Texicon helps businesses with websites, mobile apps, online stores and web applications — from design to finished product. I work as a fullstack developer.
+
+More about projects and my role will follow soon.

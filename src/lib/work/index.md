@@ -3,7 +3,9 @@ title: Index
 role: Fullstack
 period: Present
 image: /cover-image.jpg
-externalLink: https://example.com/index
+externalLink: https://tihlde.org
 ---
 
-Project description and details can go here.
+Index is a role (verv) in TIHLDE, the student association for data engineering, digital infrastructure and cybersecurity, digital business development, digital transformation and information processing at NTNU in Trondheim. I work as a fullstack developer.
+
+More about my work here will follow soon.
