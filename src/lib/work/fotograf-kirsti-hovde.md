@@ -2,7 +2,7 @@
 title: Fotograf Kirsti Hovde
 role: Portfolio website
 period: null
-image: /fotokirsti.png
+image: /fotokirsti_compressed.webp
 externalLink: https://fotokirsti-frontend-production.up.railway.app
 ---
 

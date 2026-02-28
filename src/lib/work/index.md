@@ -2,7 +2,7 @@
 title: Index
 role: Fullstack
 period: Present
-image: /cover-image.jpg
+image: /tihlde_compressed.webp
 externalLink: https://tihlde.org
 ---
 

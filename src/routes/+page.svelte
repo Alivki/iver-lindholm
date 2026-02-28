@@ -65,7 +65,7 @@
 					</span>
 					</p>
 
-					<img class="aspect-square object-cover object-top rounded-lg max-w-full min-w-0 w-full" src="/iver.jpg" alt="logo" />
+					<img class="aspect-square object-cover object-top rounded-lg max-w-full min-w-0 w-full" src="/iver_compressed.webp" alt="logo" />
 				</div>
 			</div>
 
