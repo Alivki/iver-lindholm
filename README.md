@@ -1,42 +1,102 @@
-# sv
+# Iver Lindholm's Portfolio Website 🌟
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Welcome to my spot on the world wide web! This is my portfolio website, built with SvelteKit, where I showcase my work, skills, and journey as a developer. Explore my projects, learn about me, and see what I'm all about! 🚀
 
-## Creating a project
+![Portfolio Screenshot](./static/screenshot.png)
 
-If you're seeing this, you've probably already done this step. Congrats!
+👉 Live Site: [iverlindholm.no](https://iverlindholm.no)
+👉 GitHub Repository: [Alivki/iver-lindholm](https://github.com/Alivki/iver-lindholm)
+
+## 📖 Table of Contents
+
+- [Tech Stack](#tech-stack-)
+- [Getting Started](#getting-started-)
+- [Project Structure](#project-structure)
+- [Contact](#contact-)
+- [License](#license-)
+
+## Tech Stack 🛠️
+
+This portfolio is powered by modern and lightweight tools:
+
+| Category                  | Technology       |
+| ------------------------- | ---------------- |
+| Framework                 | SvelteKit        |
+| Runtime                   | Bun              |
+| Styling                   | Tailwind CSS     |
+| Content                   | MDsveX           |
+| Deployment                | Railway          |
+| Version Control           | Git              |
+| Linting / Code Quality    | ESLint, Prettier |
+
+## Getting Started ⚙️
+
+Follow the steps below to run this project locally.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Bun](https://bun.sh/) (or Node.js with npm/pnpm/yarn)
+- [Git](https://git-scm.com/)
+
+### Installation
 
 ```sh
-# create a new project
-npx sv create my-app
+# Clone the repository
+git clone https://github.com/Alivki/iver-lindholm.git
+cd iver-lindholm
+
+# Install dependencies
+bun install
+
+# Start the development server
+bun run dev
 ```
 
-To recreate this project with the same configuration:
+### Building
 
 ```sh
-# recreate this project
-bun x sv create --template minimal --types ts --add tailwindcss="plugins:none" eslint prettier --install bun iver
+# Create a production build
+bun run build
+
+# Start the production server
+bun run start
 ```
 
-## Developing
+## Project Structure
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```
+iver-lindholm/
+├── src/                # Source files (routes, components, lib)
+│   ├── lib/            # Shared components and utilities
+│   ├── routes/         # SvelteKit routes and pages
+│   ├── app.html        # HTML template
+│   └── app.d.ts        # TypeScript app declarations
+├── static/             # Static assets (images, robots.txt, etc.)
+├── svelte.config.js    # SvelteKit configuration
+├── vite.config.ts      # Vite configuration
+├── eslint.config.js    # ESLint configuration
+├── package.json        # Project metadata and scripts
+└── README.md           # You are here!
 ```
 
-## Building
+## Contact 📬
 
-To create a production version of your app:
+I'd love to connect — whether you're interested in collaboration, have feedback, or just want to say hello!
 
-```sh
-npm run build
-```
+| Platform               | Link                                                                 |
+| ---------------------- | -------------------------------------------------------------------- |
+| 📧 Email               | [iver.lindholm@gmail.com](mailto:iver.lindholm@gmail.com)            |
+| 💼 LinkedIn            | [linkedin.com/in/iver-lindholm](https://www.linkedin.com/in/iver-lindholm/) |
+| 🌐 Portfolio / Website | [iverlindholm.no](https://iverlindholm.no)                           |
 
-You can preview the production build with `npm run preview`.
+## License 📝
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project is licensed under the MIT License.
+See the [LICENSE](./LICENSE) file for more information.
+
+---
+
+Built with 💖 by Iver Lindholm
+© 2026 All rights reserved.
