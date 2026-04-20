@@ -2,7 +2,9 @@
 
 Welcome to my spot on the world wide web! This is my portfolio website, built with SvelteKit, where I showcase my work, skills, and journey as a developer. Explore my projects, learn about me, and see what I'm all about! 🚀
 
-![Portfolio Screenshot](./static/preview.png)
+<kbd>
+  <img src="./static/preview.png" alt="Portfolio Screenshot">
+</kbd>
 
 ## 📖 Table of Contents
 
