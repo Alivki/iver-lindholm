@@ -4,9 +4,6 @@ Welcome to my spot on the world wide web! This is my portfolio website, built wi
 
 ![Portfolio Screenshot](./static/preview.png)
 
-👉 Live Site: [iverlindholm.no](https://iverlindholm.no)
-👉 GitHub Repository: [Alivki/iver-lindholm](https://github.com/Alivki/iver-lindholm)
-
 ## 📖 Table of Contents
 
 - [Tech Stack](#tech-stack-)
