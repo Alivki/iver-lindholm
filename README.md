@@ -2,7 +2,7 @@
 
 Welcome to my spot on the world wide web! This is my portfolio website, built with SvelteKit, where I showcase my work, skills, and journey as a developer. Explore my projects, learn about me, and see what I'm all about! 🚀
 
-![Portfolio Screenshot](./static/screenshot.png)
+![Portfolio Screenshot](./static/preview.png)
 
 👉 Live Site: [iverlindholm.no](https://iverlindholm.no)
 👉 GitHub Repository: [Alivki/iver-lindholm](https://github.com/Alivki/iver-lindholm)
