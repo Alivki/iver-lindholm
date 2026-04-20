@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+@theme {
+	--color-blue-600: #2443F8;
+}
+
 @font-face {
 	font-family: 'Geist Mono';
 	src: url('https://unpkg.com/geist@1.7.0/dist/fonts/geist-mono/GeistMono-Regular.woff2') format('woff2');
@@ -11,29 +15,30 @@
 	--font-geist-mono: 'Geist Mono', ui-monospace, monospace;
 }
 
+::selection {
+	background-color: rgb(36 67 248 / 0.18);
+	color: inherit;
+}
+::-moz-selection {
+	background-color: rgb(36 67 248 / 0.18);
+	color: inherit;
+}
+
 html {
 	scroll-behavior: smooth;
 }
 
-@keyframes work-preview-fade {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
 .work-preview {
-	opacity: 0;
-	animation: work-preview-fade 0.35s ease-out forwards;
 	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-	transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .work-preview:hover {
 	box-shadow: 0 35px 60px -15px rgb(0 0 0 / 0.3);
-	border-color: rgb(37 99 235);
-	transform: translateY(-50%) scale(1.02);
+	border-color: #2443F8;
+}
+
+.work-prose img {
+	box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.12), 0 10px 25px -10px rgb(0 0 0 / 0.06);
 }
 
 /* Work prose: code blocks - white style, title, line numbers, colored highlights */

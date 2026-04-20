@@ -73,7 +73,7 @@ console.log(calc.getValue()) // 18
 
 Images in markdown get rounded corners automatically:
 
-![Photography portfolio screenshot](/fotokirsti.png)
+![Photography portfolio screenshot](/fotokirsti_compressed.webp)
 
 ## Blockquote
 

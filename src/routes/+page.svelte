@@ -2,34 +2,49 @@
 	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
 	import { base } from '$app/paths';
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	let { data } = $props();
 	const workItems = $derived(data?.workItems ?? []);
-	import { tick } from 'svelte';
 
 	let hoveredWorkIndex = $state<number | null>(null);
 	let previewTop = $state(0);
 	let previewContainerEl = $state<HTMLElement | null>(null);
-	let hoveredRowEl = $state<HTMLElement | null>(null);
 
-	$effect(() => {
-		const idx = hoveredWorkIndex;
+	function updatePreviewTop(row: HTMLElement) {
 		const container = previewContainerEl;
-		const row = hoveredRowEl;
-		if (idx === null || !container || !row) return;
-		tick().then(() => {
-			const rowRect = row.getBoundingClientRect();
-			const containerRect = container.getBoundingClientRect();
-			const rowCenterY = rowRect.top + rowRect.height / 2;
-			previewTop = rowCenterY - containerRect.top;
-		});
+		if (!container) return;
+		const rowRect = row.getBoundingClientRect();
+		const containerRect = container.getBoundingClientRect();
+		previewTop = rowRect.top + rowRect.height / 2 - containerRect.top;
+	}
+
+	const SCROLL_KEY = 'home:scrollY';
+
+	beforeNavigate(({ to }) => {
+		if (to?.url.pathname.startsWith(base + '/work/')) {
+			sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+		}
+	});
+
+	afterNavigate(({ from }) => {
+		if (!from) return;
+		if (!from.url.pathname.startsWith(base + '/work/')) return;
+		const saved = sessionStorage.getItem(SCROLL_KEY);
+		if (saved === null) return;
+		sessionStorage.removeItem(SCROLL_KEY);
+		const y = parseInt(saved, 10);
+		if (!Number.isNaN(y)) {
+			requestAnimationFrame(() => window.scrollTo(0, y));
+		}
 	});
 
 
 	const socialItems = [
 		{ title: 'LinkedIn', handle: 'Follow', link: 'https://linkedin.com' },
 		{ title: 'GitHub', handle: 'Follow', link: 'https://github.com' },
-		{ title: 'Instagram', handle: 'Follow', link: 'https://instagram.com' },
 	];
 
 	const schoolItems = [
@@ -81,8 +96,8 @@
 							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"
 							role="button"
 							tabindex="0"
-							onmouseenter={(e) => { hoveredWorkIndex = i; hoveredRowEl = e.currentTarget; }}
-							onmouseleave={() => { hoveredWorkIndex = null; hoveredRowEl = null; }}
+							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredWorkIndex = i; }}
+							onmouseleave={() => { hoveredWorkIndex = null; }}
 						>
 							<div class="flex items-start gap-3">
 								<p class="text-sm whitespace-nowrap leading-none mt-0.5">{work.title}</p>
@@ -190,17 +205,24 @@
 		style="min-height: 420px;"
 	>
 		{#if hoveredWorkIndex !== null}
-			<a
-				href={base + '/work/' + workItems[hoveredWorkIndex].slug}
-				class="work-preview absolute left-4 w-[calc(100%-1rem)] block rounded-xl overflow-hidden border border-gray-200 bg-gray-100 -translate-y-1/2"
+			<div
+				class="absolute left-4 w-[calc(100%-1rem)] -translate-y-1/2 transition-[top] duration-300 ease-out"
 				style="top: {previewTop}px;"
 			>
-				<img
-					src={workItems[hoveredWorkIndex].image}
-					alt={workItems[hoveredWorkIndex].title}
-					class="w-full aspect-video object-cover"
-				/>
-			</a>
+				<a
+					href={base + '/work/' + workItems[hoveredWorkIndex].slug}
+					class="work-preview block rounded-xl overflow-hidden border border-gray-200 bg-gray-100"
+					style="view-transition-name: work-hero;"
+					in:fly={{ y: -12, duration: 280, easing: cubicOut }}
+					out:fly={{ y: 6, duration: 180, easing: cubicOut }}
+				>
+					<img
+						src={workItems[hoveredWorkIndex].image}
+						alt={workItems[hoveredWorkIndex].title}
+						class="w-full aspect-video object-cover"
+					/>
+				</a>
+			</div>
 		{/if}
 	</div>
 </div>

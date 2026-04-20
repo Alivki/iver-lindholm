@@ -95,7 +95,10 @@
 		</header>
 
 		{#if meta.image}
-			<figure class="rounded-xl overflow-hidden border border-gray-200 shadow-sm mb-8">
+			<figure
+				class="rounded-xl overflow-hidden border border-gray-200 shadow-sm mb-8"
+				style="view-transition-name: work-hero;"
+			>
 				<img
 					src={meta.image}
 					alt={meta.title}

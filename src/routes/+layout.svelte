@@ -2,11 +2,26 @@
 	import './layout.css';
 	import { page } from '$app/state';
 	import { base } from '$app/paths';
+	import { onNavigate } from '$app/navigation';
 	import favicon from '$lib/assets/favicon.svg';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
+
+	onNavigate((navigation) => {
+		if (typeof document === 'undefined') return;
+		const startViewTransition = (document as Document & {
+			startViewTransition?: (cb: () => Promise<void> | void) => { finished: Promise<void> };
+		}).startViewTransition;
+		if (!startViewTransition) return;
+		return new Promise<void>((resolve) => {
+			startViewTransition.call(document, async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	const title = 'Iver Lindholm / portfolio';
 	const description = 'Portfolio of Iver Lindholm';
