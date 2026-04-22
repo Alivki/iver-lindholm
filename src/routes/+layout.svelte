@@ -3,7 +3,6 @@
 	import { page } from '$app/state';
 	import { base } from '$app/paths';
 	import { onNavigate } from '$app/navigation';
-	import favicon from '$lib/assets/favicon.svg';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
@@ -23,25 +22,30 @@
 		});
 	});
 
-	const title = 'Iver Lindholm / portfolio';
-	const description = 'Portfolio of Iver Lindholm';
-	const logoUrl = $derived(page.url.origin + base + '/logo.png');
+	const siteName = 'Iver Lindholm';
+	const defaultTitle = 'Iver Lindholm';
+	const defaultDescription =
+		'Portfolio of Iver Lindholm, a fullstack developer based in Trondheim. Projects across SvelteKit, TypeScript and cloud tooling, plus writeups of work, school and side projects.';
+	const ogImage = $derived(page.url.origin + base + '/preview.png');
+	const canonical = $derived(page.url.origin + page.url.pathname);
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-	<link rel="icon" href={favicon} />
-	<!-- Open Graph -->
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="og:image" content={logoUrl} />
+	<title>{defaultTitle}</title>
+	<meta name="description" content={defaultDescription} />
+	<meta name="author" content={siteName} />
+	<meta name="theme-color" content="#ffffff" />
+	<link rel="canonical" href={canonical} />
+	<meta property="og:site_name" content={siteName} />
+	<meta property="og:title" content={defaultTitle} />
+	<meta property="og:description" content={defaultDescription} />
+	<meta property="og:image" content={ogImage} />
 	<meta property="og:type" content="website" />
-	<!-- Twitter -->
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content={logoUrl} />
+	<meta property="og:url" content={canonical} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={defaultTitle} />
+	<meta name="twitter:description" content={defaultDescription} />
+	<meta name="twitter:image" content={ogImage} />
 </svelte:head>
 <div class="min-h-screen flex flex-col">
 	<Header />

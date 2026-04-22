@@ -2,11 +2,20 @@
 	/* eslint-disable svelte/no-navigation-without-resolve -- internal link uses base; external links cannot use resolve */
 	import { base } from '$app/paths';
 	import { tick } from 'svelte';
+	import { page } from '$app/state';
+	import { ArrowUpRight } from 'lucide-svelte';
 	import type { PageData } from './$types';
 
 	let { data } = $props() as { data: PageData };
 	const meta = $derived(data.meta);
 	const Content = $derived(data.content);
+
+	const pageTitle = $derived(`${meta.title} · Iver Lindholm`);
+	const pageDescription = $derived(
+		`${meta.title}${meta.role ? ' · ' + meta.role : ''}${meta.period ? ' · ' + meta.period : ''}. Project writeup by Iver Lindholm.`
+	);
+	const pageImage = $derived(page.url.origin + base + (meta.image || '/preview.png'));
+	const canonical = $derived(page.url.origin + page.url.pathname);
 
 	let bodyEl = $state<HTMLElement | null>(null);
 	let tocItems = $state<{ id: string; text: string; level: number }[]>([]);
@@ -62,7 +71,18 @@
 </script>
 
 <svelte:head>
-	<title>{meta.title} — Work</title>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<link rel="canonical" href={canonical} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:image" content={pageImage} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={canonical} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={pageDescription} />
+	<meta name="twitter:image" content={pageImage} />
 </svelte:head>
 
 <div class="w-full max-w-full flex flex-col lg:flex-row lg:flex-nowrap lg:gap-6 lg:max-w-5xl mx-auto px-4 sm:px-6 pb-12">
@@ -88,7 +108,7 @@
 						class="text-blue-600 hover:underline inline-flex items-center gap-1.5 text-sm"
 					>
 						Visit site
-						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+						<ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
 					</a>
 				</p>
 			{/if}
@@ -96,20 +116,20 @@
 
 		{#if meta.image}
 			<figure
-				class="rounded-xl overflow-hidden border border-gray-200 shadow-sm mb-8"
+				class="work-img rounded-xl overflow-hidden border border-gray-200 shadow-md mb-8"
 				style="view-transition-name: work-hero;"
 			>
 				<img
 					src={meta.image}
 					alt={meta.title}
-					class="w-full aspect-video object-cover"
+					class="w-full h-auto block"
 				/>
 			</figure>
 		{/if}
 
 		<div
 			bind:this={bodyEl}
-			class="prose prose-sm prose-img:max-w-full prose-blockquote:max-w-full prose-pre:max-w-full text-gray-700 prose-p:text-gray-700 prose-headings:text-gray-900 prose-headings:font-medium prose-img:rounded-xl prose-img:overflow-hidden prose-img:border prose-img:border-gray-200 prose-img:shadow-sm prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:!bg-white prose-pre:text-inherit work-prose max-w-full"
+			class="prose prose-sm prose-img:max-w-full prose-blockquote:max-w-full prose-pre:max-w-full text-gray-700 prose-p:text-gray-700 prose-headings:text-gray-900 prose-headings:font-medium prose-img:rounded-xl prose-img:overflow-hidden prose-img:border prose-img:border-gray-200 prose-img:shadow-md prose-img:w-full prose-img:h-auto prose-img:block prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:!bg-white prose-pre:text-inherit work-prose max-w-full"
 		>
 			{#if Content}
 				<Content />
@@ -119,8 +139,8 @@
 		</div>
 	</article>
 
-	{#if tocItems.length > 0}
-		<aside class="hidden lg:block w-48 shrink-0 pt-20">
+	<aside class="hidden lg:block w-48 shrink-0 pt-20" aria-hidden={tocItems.length === 0 ? 'true' : undefined}>
+		{#if tocItems.length > 0}
 			<nav aria-label="In this post" class="sticky top-24">
 				<h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">In this post</h2>
 				<ul class="space-y-2 text-sm">
@@ -144,6 +164,6 @@
 					{/each}
 				</ul>
 			</nav>
-		</aside>
-	{/if}
+		{/if}
+	</aside>
 </div>

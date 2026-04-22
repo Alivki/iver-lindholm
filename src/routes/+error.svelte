@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>{is404 ? 'Page not found' : 'Error'} — Iver Lindholm</title>
+	<title>{is404 ? 'Page not found' : 'Error'} · Iver Lindholm</title>
 </svelte:head>
 
 <div class="flex-1 flex flex-col justify-center px-4 sm:px-6 py-12">

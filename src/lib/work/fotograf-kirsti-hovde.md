@@ -4,6 +4,8 @@ role: Portfolio website
 period: null
 image: /fotokirsti_compressed.webp
 externalLink: https://fotokirsti-frontend-production.up.railway.app
+category: work
+order: 1
 ---
 
 Custom portfolio site for photographer Kirsti Hovde. Built with a focus on showcasing her work with a clean, image-led layout. You can use **bold** and *italic* text, plus [links](https://example.com).
