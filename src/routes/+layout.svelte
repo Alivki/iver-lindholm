@@ -10,6 +10,7 @@
 
 	onNavigate((navigation) => {
 		if (typeof document === 'undefined') return;
+		if (!window.matchMedia('(min-width: 1024px)').matches) return;
 		const startViewTransition = (document as Document & {
 			startViewTransition?: (cb: () => Promise<void> | void) => { finished: Promise<void> };
 		}).startViewTransition;

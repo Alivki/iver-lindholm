@@ -1,10 +1,14 @@
 <script lang="ts">
 	/* eslint-disable svelte/no-navigation-without-resolve -- internal link uses base; external links cannot use resolve */
 	import { base } from '$app/paths';
-	import { tick } from 'svelte';
+	import { tick, onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { ArrowUpRight } from 'lucide-svelte';
 	import type { PageData } from './$types';
+
+	onMount(() => {
+		window.scrollTo(0, 0);
+	});
 
 	let { data } = $props() as { data: PageData };
 	const meta = $derived(data.meta);
@@ -116,8 +120,7 @@
 
 		{#if meta.image}
 			<figure
-				class="work-img rounded-xl overflow-hidden border border-gray-200 shadow-md mb-8"
-				style="view-transition-name: work-hero;"
+				class="work-img work-hero-transition rounded-xl overflow-hidden border border-gray-200 shadow-md mb-8"
 			>
 				<img
 					src={meta.image}

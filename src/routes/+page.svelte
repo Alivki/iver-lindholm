@@ -65,14 +65,14 @@
 	<div class="hidden lg:block w-[min(520px,34vw)] xl:max-w-125 shrink-0" aria-hidden="true"></div>
 	<!-- Center column: full width mobile, capped and centered on large screens -->
 	<div class="w-full md:max-w-2xl lg:w-[30vw] lg:min-w-75 lg:max-w-xl xl:max-w-2xl min-w-0 flex gap-14 flex-col shrink-0 lg:-translate-x-6">
-			<div class="flex flex-col md:flex-row md:gap-5 items-stretch">
+			<div class="flex flex-col md:flex-row md:gap-5 items-stretch fade-up" style="--fade-delay: 80ms">
 				<div class="hidden md:block w-14 shrink-0 opacity-0 select-none pointer-events-none" aria-hidden="true">about</div>
 				<div class="min-w-0 flex-1">
 					<MainBodyHeader />
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5">
+			<div class="flex flex-col md:flex-row gap-2 md:gap-5 fade-up" style="--fade-delay: 140ms">
 				<p class="text-blue-600 text-sm font-medium md:font-normal shrink-0 md:w-14">About</p>
 				<div class="gap-5 flex flex-col">
 					<p class="text-sm flex flex-col gap-3">
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start">
+			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 200ms">
 				<div class="shrink-0 md:w-14">
 					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Projects</p>
 					<div class="opacity-0 text-sm hidden md:block">about</div>
@@ -112,7 +112,7 @@
 									{#if work.period}
 										<p class="text-sm text-gray-500">{work.period}</p>
 									{/if}
-									<span class="text-gray-400 group-hover:text-blue-600 transition-colors p-0.5">
+									<span class="text-gray-400 group-hover:text-blue-600 transition-colors duration-200 ease-out p-0.5 inline-flex">
 										<ExternalLink size={14} strokeWidth={2} aria-hidden="true" />
 									</span>
 								</div>
@@ -138,7 +138,7 @@
 									{#if school.period}
 										<p class="text-sm text-gray-500">{school.period}</p>
 									{/if}
-									<span class="text-gray-400 group-hover:text-blue-600 transition-colors p-0.5">
+									<span class="text-gray-400 group-hover:text-blue-600 transition-colors duration-200 ease-out p-0.5 inline-flex">
 										<ExternalLink size={14} strokeWidth={2} aria-hidden="true" />
 									</span>
 								</div>
@@ -164,7 +164,7 @@
 									{#if hobby.period}
 										<p class="text-sm text-gray-500">{hobby.period}</p>
 									{/if}
-									<span class="text-gray-400 group-hover:text-blue-600 transition-colors p-0.5">
+									<span class="text-gray-400 group-hover:text-blue-600 transition-colors duration-200 ease-out p-0.5 inline-flex">
 										<ExternalLink size={14} strokeWidth={2} aria-hidden="true" />
 									</span>
 								</div>
@@ -174,7 +174,7 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start">
+			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 260ms">
 				<div class="shrink-0 md:w-14">
 					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">School</p>
 				</div>
@@ -193,7 +193,7 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start">
+			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 320ms">
 				<div class="shrink-0 md:w-14">
 					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Extras</p>
 				</div>
@@ -210,14 +210,14 @@
 							<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 							<div class="flex items-center gap-0 whitespace-nowrap underline-offset-2 group-hover/row:underline group-hover/row:text-blue-600 group-hover/row:decoration-blue-600 decoration-current transition-colors">
 								<p class="text-sm text-gray-500">{extra.label}</p>
-								<Download size={14} strokeWidth={2} class="text-gray-400 group-hover/row:text-blue-600 transition-colors shrink-0 ml-1" aria-hidden="true" />
+								<Download size={14} strokeWidth={2} class="text-gray-400 group-hover/row:text-blue-600 transition-colors duration-200 ease-out shrink-0 ml-1" aria-hidden="true" />
 							</div>
 						</a>
 					{/each}
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5">
+			<div class="flex flex-col md:flex-row gap-2 md:gap-5 fade-up" style="--fade-delay: 380ms">
 				<p class="text-blue-600 text-sm font-medium md:font-normal shrink-0 md:w-14">Now</p>
 				<p class="text-sm flex flex-col gap-3 min-w-0 text-gray-600">
 					<span>
@@ -230,7 +230,7 @@
 			</div>
 
 
-		<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start">
+		<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 440ms">
 			<div class="shrink-0 md:w-14">
 				<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Social</p>
 				<div class="opacity-0 text-sm hidden md:block">about</div>
@@ -247,7 +247,7 @@
 						<div class="flex-1 h-px bg-gray-300 rounded self-center min-w-0"></div>
 						<div class="flex items-center gap-0 whitespace-nowrap underline-offset-2 group-hover/row:underline group-hover/row:text-blue-600 group-hover/row:decoration-blue-600 decoration-current transition-colors">
 							<p class="text-sm text-gray-500">{social.handle}</p>
-							<ArrowUpRight size={14} strokeWidth={2} class="text-gray-400 group-hover/row:text-blue-600 transition-colors shrink-0" aria-hidden="true" />
+							<ArrowUpRight size={14} strokeWidth={2} class="text-gray-400 group-hover/row:text-blue-600 transition-colors duration-200 ease-out shrink-0" aria-hidden="true" />
 						</div>
 					</a>
 				{/each}
@@ -268,8 +268,7 @@
 			>
 				<a
 					href={hoveredPreview.href}
-					class="work-preview block rounded-xl overflow-hidden border border-gray-200 shadow-md bg-gray-100"
-					style="view-transition-name: work-hero;"
+					class="work-preview work-hero-transition block rounded-xl overflow-hidden border border-gray-200 shadow-md bg-gray-100"
 					in:fly={{ y: -12, duration: 280, easing: cubicOut }}
 					out:fly={{ y: 6, duration: 180, easing: cubicOut }}
 				>
