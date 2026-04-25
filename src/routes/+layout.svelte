@@ -26,7 +26,7 @@
 	const siteName = 'Iver Lindholm';
 	const defaultTitle = 'Iver Lindholm';
 	const defaultDescription =
-		'Portfolio of Iver Lindholm, a fullstack developer based in Trondheim. Projects across SvelteKit, TypeScript and cloud tooling, plus writeups of work, school and side projects.';
+		'Portfolio website of Iver Lindholm, a fullstack developer based in Trondheim, currently studying at NTNU. The site is a short about and writeups of projects from work, school and side projects.';
 	const ogImage = $derived(page.url.origin + base + '/preview.png');
 	const canonical = $derived(page.url.origin + page.url.pathname);
 </script>

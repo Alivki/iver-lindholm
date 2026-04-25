@@ -77,10 +77,10 @@
 				<div class="gap-5 flex flex-col">
 					<p class="text-sm flex flex-col gap-3">
 					<span>
-						Tempor consectetur aute nisi est deserunt eu consequat labore. Deserunt Lorem dolore cillum ullamco sunt mollit eiusmod. Voluptate ullamco dolore veniam culpa dolore anim elit. Elit ea duis laboris minim cillum proident amet sit veniam velit officia exercitation sint minim.
+						I'm a computer engineering student at NTNU in Trondheim. Before university I took the IKT-SK course at Gausdal upper secondary school, then served fifteen months in the Royal Norwegian Air Force as a guard at Evenes air station.
 					</span>
 						<span>
-						Mollit eiusmod cupidatat irure officia deserunt commodo mollit irure ex. Id velit sint exercitation cillum officia dolore sit fugiat consectetur. Magna excepteur cupidatat eu eiusmod amet cillum minim exercitation. Sunt eu minim amet exercitation voluptate cillum fugiat non qui nostrud in quis anim id. Reprehenderit aliquip sit duis. Aliquip labore veniam voluptate Lorem aliqua sit laboris sit elit deserunt voluptate. Culpa elit do aute. Ad eu eiusmod non et non esse eu cupidatat fugiat.
+						I work hard, plan carefully, and pick up new things quickly. That's how I learned to program, and it's how I show up for the projects I care about. Most of that energy now goes into the bachelor at NTNU and a volunteer role in TIHLDE as fullstack developer for Index on tihlde.org. It's a real codebase with real users, and the place where I've learned how proper team workflows actually work in practice.
 					</span>
 					</p>
 
@@ -88,13 +88,14 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 200ms">
-				<div class="shrink-0 md:w-14">
-					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Projects</p>
-					<div class="opacity-0 text-sm hidden md:block">about</div>
+			<div class="grid grid-cols-1 md:grid-cols-[3.5rem_1fr] gap-x-5 gap-y-2 md:gap-y-6 items-start fade-up" style="--fade-delay: 200ms">
+				<div class="md:col-span-2 flex items-center gap-3">
+					<p class="text-blue-600 text-sm leading-none font-medium md:font-normal whitespace-nowrap">Projects</p>
+					<div class="flex-1 h-px bg-gray-200 rounded"></div>
 				</div>
+
+				<p class="text-gray-500 text-xs uppercase tracking-wider md:pt-1">Work</p>
 				<div class="w-full flex flex-col min-w-0">
-					<p class="text-blue-600 text-sm leading-none mb-2 w-full">Work</p>
 					{#each workItems as work (work.slug)}
 						<a
 							href={base + '/work/' + work.slug}
@@ -119,8 +120,10 @@
 							</div>
 						</a>
 					{/each}
+				</div>
 
-					<p class="text-blue-600 text-sm leading-none mt-4 mb-2 w-full">School</p>
+				<p class="text-gray-500 text-xs uppercase tracking-wider md:pt-1">School</p>
+				<div class="w-full flex flex-col min-w-0">
 					{#each schoolItems as school (school.slug)}
 						<a
 							href={base + '/work/' + school.slug}
@@ -145,8 +148,10 @@
 							</div>
 						</a>
 					{/each}
+				</div>
 
-					<p class="text-blue-600 text-sm leading-none mt-4 mb-2 w-full">Hobby</p>
+				<p class="text-gray-500 text-xs uppercase tracking-wider md:pt-1">Hobby</p>
+				<div class="w-full flex flex-col min-w-0">
 					{#each hobbyItems as hobby (hobby.slug)}
 						<a
 							href={base + '/work/' + hobby.slug}
@@ -188,7 +193,7 @@
 						</div>
 					</div>
 					<p class="text-sm text-gray-600 mt-3">
-						A three-year engineering bachelor in computer science at NTNU Trondheim, specialising in systems development and agile methodology. The program covers the fundamentals of building software that can be trusted in production: system design, programming, databases, networks, cybersecurity and privacy, alongside operations and maintenance. Much of it runs through team projects on real problems from industry, using the same modern tools and workflows that software is shipped with day to day.
+						A three-year engineering bachelor in computer science at NTNU Trondheim, specialising in systems development and agile methodology. The program covers the fundamentals of building software that can be trusted in production: system design, programming, databases, networks, cybersecurity and privacy, alongside operations and maintenance. Much of it runs through team projects where we use tools that give a solid baseline to keep building skills on top of, while working on real problems.
 					</p>
 				</div>
 			</div>
@@ -221,10 +226,10 @@
 				<p class="text-blue-600 text-sm font-medium md:font-normal shrink-0 md:w-14">Now</p>
 				<p class="text-sm flex flex-col gap-3 min-w-0 text-gray-600">
 					<span>
-						A short free-text section about what I'm currently focused on. Right now this is a placeholder, but the idea is to keep a living paragraph or two here that answers "what is Iver working on this week" without needing a dedicated blog or news feed.
+						Sticking with Index through the last year of the bachelor. Next semester I'll most likely take INFT2503 (C++ for programmers), IMAT3011 (Mathematics for engineering 3 A), IDATT2503 (Software security and cryptography), and TDT4172 (Introduction to machine learning).
 					</span>
 					<span>
-						I'll swap this out with a mix of what I'm building, what I'm reading, and what I'm learning in the course at NTNU. Short, honest, and updated every few weeks so it stays accurate instead of drifting into another static "about me" block.
+						Outside of that I tinker with whatever I find interesting and worth learning from in my spare time.
 					</span>
 				</p>
 			</div>
