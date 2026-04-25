@@ -6,6 +6,7 @@ image: /texicon.webp
 externalLink: https://texicon.no
 category: work
 order: 3
+saturate: 0
 ---
 
 Texicon helps businesses with websites, mobile apps, online stores and web applications, from design to finished product. I work as a fullstack developer.

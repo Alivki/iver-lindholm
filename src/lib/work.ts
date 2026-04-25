@@ -11,6 +11,8 @@ export type WorkItem = {
 	category: WorkCategory;
 	order: number;
 	hidden: boolean;
+	hue: number;
+	saturate: number;
 };
 
 const modules = import.meta.glob<{
@@ -33,7 +35,9 @@ function toItem(path: string, mod: (typeof modules)[string]): WorkItem {
 		externalLink: meta.externalLink as string | undefined,
 		category,
 		order: typeof meta.order === 'number' ? meta.order : 0,
-		hidden: meta.hidden === true
+		hidden: meta.hidden === true,
+		hue: typeof meta.hue === 'number' ? meta.hue : 263,
+		saturate: typeof meta.saturate === 'number' ? meta.saturate : 1
 	};
 }
 

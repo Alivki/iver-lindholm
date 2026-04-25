@@ -6,6 +6,7 @@ image: /tihlde_compressed.webp
 externalLink: https://tihlde.org
 category: work
 order: 2
+hue: 217
 ---
 
 Index is one of the sub-groups (*undergrupper*) inside [TIHLDE](https://tihlde.org), the student association for data engineering, digital infrastructure and cybersecurity, digital business development, digital transformation, and information processing at NTNU in Trondheim. I joined Index in July 2024 and work as a fullstack developer.

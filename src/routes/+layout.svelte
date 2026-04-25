@@ -8,6 +8,8 @@
 
 	let { children } = $props();
 
+	const isHome = $derived(page.url.pathname === base + '/' || page.url.pathname === base);
+
 	onNavigate((navigation) => {
 		if (typeof document === 'undefined') return;
 		if (!window.matchMedia('(min-width: 1024px)').matches) return;
@@ -53,5 +55,7 @@
 	<main class="flex-1 flex flex-col">
 		{@render children()}
 	</main>
-	<Footer />
+	{#if !isHome}
+		<Footer />
+	{/if}
 </div>

@@ -5,6 +5,7 @@ period: april 2026
 image: /rotter-hero.png
 category: hobby
 order: 1
+hue: 146
 ---
 
 Røtter is a quiet tool for building your family tree branch by branch · from names on paper to a living archive the whole family can read, extend, and take care of.

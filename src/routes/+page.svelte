@@ -1,6 +1,7 @@
 <script lang="ts">
 	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
+	import BottomGlow from '$lib/components/BottomGlow.svelte';
 	import { base } from '$app/paths';
 	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -60,7 +61,7 @@
 	<title>Iver Lindholm</title>
 </svelte:head>
 
-<div class="w-full flex flex-col lg:flex-row lg:justify-center min-h-screen my-6 sm:my-10 px-4 sm:px-6">
+<div class="w-full flex flex-col lg:flex-row lg:justify-center mt-6 sm:mt-10 px-4 sm:px-6">
 	<!-- Left spacer: hidden on mobile/tablet, same width as preview on lg+ so center is centered -->
 	<div class="hidden lg:block w-[min(520px,34vw)] xl:max-w-125 shrink-0" aria-hidden="true"></div>
 	<!-- Center column: full width mobile, capped and centered on large screens -->
@@ -77,7 +78,7 @@
 				<div class="gap-5 flex flex-col">
 					<p class="text-sm flex flex-col gap-3">
 					<span>
-						I'm a computer engineering student at NTNU in Trondheim. Before university I took the IKT-SK course at Gausdal upper secondary school, then served fifteen months in the Royal Norwegian Air Force as a guard at Evenes air station.
+						I'm a computer engineering student at NTNU in Trondheim. Before university I took the IKT-SK course at Gausdal upper secondary school, then served fifteen months in the Royal Norwegian Air Force as a guard at 113 Air Wing, Evenes Air Base.
 					</span>
 						<span>
 						I work hard, plan carefully, and pick up new things quickly. That's how I learned to program, and it's how I show up for the projects I care about. Most of that energy now goes into the bachelor at NTNU and a volunteer role in TIHLDE as fullstack developer for Index on tihlde.org. It's a real codebase with real users, and the place where I've learned how proper team workflows actually work in practice.
@@ -235,7 +236,7 @@
 			</div>
 
 
-		<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up" style="--fade-delay: 440ms">
+		<div class="flex flex-col md:flex-row gap-2 md:gap-5 items-start fade-up mb-40" style="--fade-delay: 440ms">
 			<div class="shrink-0 md:w-14">
 				<p class="text-blue-600 text-sm leading-none font-medium md:font-normal">Social</p>
 				<div class="opacity-0 text-sm hidden md:block">about</div>
@@ -287,3 +288,5 @@
 		{/if}
 	</div>
 </div>
+
+<BottomGlow />
