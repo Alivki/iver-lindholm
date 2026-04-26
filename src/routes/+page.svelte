@@ -58,7 +58,35 @@
 </script>
 
 <svelte:head>
-	<title>Iver Lindholm</title>
+	<title>Iver Lindholm — Fullstack Developer</title>
+	<meta name="description" content="Iver Lindholm — fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
+	<meta name="author" content="Iver Lindholm" />
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+	<meta name="theme-color" content="#000000" />
+	<link rel="canonical" href="https://iverlindholm.no/" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<meta property="og:site_name" content="Iver Lindholm" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:title" content="Iver Lindholm — Fullstack Developer" />
+	<meta property="og:description" content="Fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://iverlindholm.no/" />
+	<meta property="og:image" content="https://iverlindholm.no/preview.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Iver Lindholm — Fullstack Developer" />
+	<meta name="twitter:description" content="Fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
+	<meta name="twitter:image" content="https://iverlindholm.no/preview.png" />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Iver Lindholm',
+		url: 'https://iverlindholm.no',
+		jobTitle: 'Fullstack Developer',
+		sameAs: [
+			'https://www.linkedin.com/in/iver-lindholm',
+			'https://github.com/Alivki'
+		]
+	})}</script>`}
 </svelte:head>
 
 <div class="w-full flex flex-col lg:flex-row lg:justify-center mt-6 sm:mt-10 px-4 sm:px-6">
