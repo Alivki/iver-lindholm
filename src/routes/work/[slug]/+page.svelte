@@ -41,6 +41,17 @@
 		activeId = current ?? headings[0]?.id ?? null;
 	}
 
+	// rAF-throttle the scroll handler so getBoundingClientRect runs at most once per frame.
+	let scrollTicking = false;
+	function onScroll() {
+		if (scrollTicking) return;
+		scrollTicking = true;
+		requestAnimationFrame(() => {
+			updateActiveFromScroll();
+			scrollTicking = false;
+		});
+	}
+
 	$effect(() => {
 		const el = bodyEl;
 		if (!el || !Content) return;
@@ -52,9 +63,9 @@
 				level: parseInt(h.tagName.charAt(1), 10)
 			}));
 			updateActiveFromScroll();
-			window.addEventListener('scroll', updateActiveFromScroll, { passive: true });
+			window.addEventListener('scroll', onScroll, { passive: true });
 		});
-		return () => window.removeEventListener('scroll', updateActiveFromScroll);
+		return () => window.removeEventListener('scroll', onScroll);
 	});
 
 	$effect(() => {
@@ -83,7 +94,6 @@
 	<meta property="og:image" content={pageImage} />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content={canonical} />
-	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDescription} />
 	<meta name="twitter:image" content={pageImage} />

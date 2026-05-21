@@ -4,6 +4,7 @@
 	type Props = { hue?: number; saturate?: number };
 	let { hue = 263, saturate = 1 }: Props = $props();
 	const hueRotate = $derived(hue - 263);
+	const year = new Date().getFullYear();
 
 	let sectionEl: HTMLElement | null = $state(null);
 	let domeEl: HTMLElement | null = $state(null);
@@ -14,12 +15,15 @@
 		if (!section || !dome) return;
 
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const isMobile = window.matchMedia('(max-width: 767px)').matches;
+		// Mobile hides the glow entirely (see +page.svelte); reduced-motion users keep it static.
+		const staticGlow = reduced || isMobile;
 		let cancelled = false;
 
 		// Scroll-driven shape + opacity
 		let unsubSize: (() => void) | undefined;
 		let unsubFade: (() => void) | undefined;
-		if (reduced) {
+		if (staticGlow) {
 			dome.style.setProperty('--p', '1');
 			dome.style.setProperty('--fade', '1');
 		} else {
@@ -48,7 +52,7 @@
 		let rafId = 0;
 
 		const startLenis = () => {
-			if (lenis || reduced || cancelled) return;
+			if (lenis || staticGlow || cancelled) return;
 			import('lenis').then(({ default: Lenis }) => {
 				if (cancelled || lenis) return;
 				lenis = new Lenis({ lerp: 0.08, smoothWheel: true, syncTouch: false });
@@ -68,29 +72,32 @@
 			lenis = null;
 		};
 
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) startLenis();
-					else stopLenis();
-				}
-			},
-			{ threshold: 0, rootMargin: '500px 0px 0px 0px' }
-		);
-		observer.observe(section);
+		let observer: IntersectionObserver | undefined;
+		if (!staticGlow) {
+			observer = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (entry.isIntersecting) startLenis();
+						else stopLenis();
+					}
+				},
+				{ threshold: 0, rootMargin: '500px 0px 0px 0px' }
+			);
+			observer.observe(section);
+		}
 
 		return () => {
 			cancelled = true;
 			unsubSize?.();
 			unsubFade?.();
-			observer.disconnect();
+			observer?.disconnect();
 			stopLenis();
 		};
 	});
 </script>
 
 <section bind:this={sectionEl} class="bottom-glow">
-	<p class="copyright">© 2025 Iver Lindholm. All rights reserved.</p>
+	<p class="copyright">© {year} Iver Lindholm. All rights reserved.</p>
 </section>
 
 <div

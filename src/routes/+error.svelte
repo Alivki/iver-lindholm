@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve -- base + '/' is equivalent to resolve('/') */
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 
@@ -24,5 +25,6 @@
 				? 'The page you’re looking for doesn’t exist or has been moved.'
 				: message || 'An unexpected error occurred.'}
 		</p>
+		<a href={base + '/'} class="text-sm text-blue-600 hover:underline mt-6">← back to home</a>
 	</div>
 </div>

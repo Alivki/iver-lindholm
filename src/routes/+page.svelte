@@ -2,6 +2,7 @@
 	/* eslint-disable svelte/no-navigation-without-resolve -- external links (work, social, preview) must not use resolve(); only internal (extras) use resolve() */
 	import MainBodyHeader from '$lib/components/MainBodyHeader.svelte';
 	import BottomGlow from '$lib/components/BottomGlow.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import { base } from '$app/paths';
 	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -27,16 +28,16 @@
 	}
 
 	const SCROLL_KEY = 'home:scrollY';
+	const WORK_ROUTE = '/work/[slug]';
 
 	beforeNavigate(({ to }) => {
-		if (to?.url.pathname.startsWith(base + '/work/')) {
+		if (to?.route?.id === WORK_ROUTE) {
 			sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
 		}
 	});
 
 	afterNavigate(({ from }) => {
-		if (!from) return;
-		if (!from.url.pathname.startsWith(base + '/work/')) return;
+		if (from?.route?.id !== WORK_ROUTE) return;
 		const saved = sessionStorage.getItem(SCROLL_KEY);
 		if (saved === null) return;
 		sessionStorage.removeItem(SCROLL_KEY);
@@ -55,38 +56,35 @@
 	const extrasItems = [
 		{ title: 'CV', label: 'Download', link: '/cv.pdf', download: true },
 	];
+
+	const jsonLd =
+		'<script type="application/ld+json">' +
+		JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			name: 'Iver Lindholm',
+			url: 'https://iverlindholm.no',
+			jobTitle: 'Fullstack Developer',
+			sameAs: ['https://www.linkedin.com/in/iver-lindholm', 'https://github.com/Alivki']
+		}) +
+		'</' +
+		'script>';
 </script>
 
 <svelte:head>
 	<title>Iver Lindholm — Fullstack Developer</title>
 	<meta name="description" content="Iver Lindholm — fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
-	<meta name="author" content="Iver Lindholm" />
-	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-	<meta name="theme-color" content="#000000" />
 	<link rel="canonical" href="https://iverlindholm.no/" />
-	<link rel="manifest" href="/site.webmanifest" />
-	<meta property="og:site_name" content="Iver Lindholm" />
-	<meta property="og:locale" content="en_US" />
 	<meta property="og:title" content="Iver Lindholm — Fullstack Developer" />
 	<meta property="og:description" content="Fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://iverlindholm.no/" />
 	<meta property="og:image" content="https://iverlindholm.no/preview.png" />
-	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Iver Lindholm — Fullstack Developer" />
 	<meta name="twitter:description" content="Fullstack developer based in Trondheim, Norway. Portfolio with writeups of professional work, school projects, and hobby projects." />
 	<meta name="twitter:image" content="https://iverlindholm.no/preview.png" />
-	{@html `<script type="application/ld+json">${JSON.stringify({
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Iver Lindholm',
-		url: 'https://iverlindholm.no',
-		jobTitle: 'Fullstack Developer',
-		sameAs: [
-			'https://www.linkedin.com/in/iver-lindholm',
-			'https://github.com/Alivki'
-		]
-	})}</script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted, static JSON-LD string -->
+	{@html jsonLd}
 </svelte:head>
 
 <div class="w-full flex flex-col lg:flex-row lg:justify-center mt-6 sm:mt-10 px-4 sm:px-6">
@@ -113,7 +111,7 @@
 					</span>
 					</p>
 
-					<img class="aspect-square object-cover object-top rounded-lg max-w-full min-w-0 w-full" src="/iver_compressed.webp" alt="logo" />
+					<img class="aspect-square object-cover object-top rounded-lg max-w-full min-w-0 w-full" src="/iver_compressed.webp" alt="Iver Lindholm" />
 				</div>
 			</div>
 
@@ -128,10 +126,7 @@
 					{#each workItems as work (work.slug)}
 						<a
 							href={base + '/work/' + work.slug}
-							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"
-							role="button"
-							tabindex="0"
-							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: work.image, href: base + '/work/' + work.slug }; }}
+							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: work.image, href: base + '/work/' + work.slug }; }}
 							onmouseleave={() => { hoveredPreview = null; }}
 						>
 							<div class="flex items-start gap-3">
@@ -156,10 +151,7 @@
 					{#each schoolItems as school (school.slug)}
 						<a
 							href={base + '/work/' + school.slug}
-							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"
-							role="button"
-							tabindex="0"
-							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: school.image, href: base + '/work/' + school.slug }; }}
+							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: school.image, href: base + '/work/' + school.slug }; }}
 							onmouseleave={() => { hoveredPreview = null; }}
 						>
 							<div class="flex items-start gap-3">
@@ -184,10 +176,7 @@
 					{#each hobbyItems as hobby (hobby.slug)}
 						<a
 							href={base + '/work/' + hobby.slug}
-							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"
-							role="button"
-							tabindex="0"
-							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: hobby.image, href: base + '/work/' + hobby.slug }; }}
+							class="work-row flex flex-col gap-3 flex-1 group pb-1 cursor-pointer no-underline text-inherit"							onmouseenter={(e) => { updatePreviewTop(e.currentTarget); hoveredPreview = { image: hobby.image, href: base + '/work/' + hobby.slug }; }}
 							onmouseleave={() => { hoveredPreview = null; }}
 						>
 							<div class="flex items-start gap-3">
@@ -317,4 +306,9 @@
 	</div>
 </div>
 
-<BottomGlow />
+<div class="md:hidden">
+	<Footer />
+</div>
+<div class="hidden md:block">
+	<BottomGlow />
+</div>
