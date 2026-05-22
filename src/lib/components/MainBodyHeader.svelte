@@ -2,15 +2,12 @@
 	import { lastUpdated } from '$lib/lastUpdated';
 </script>
 
-<div class="flex items-center gap-3 w-full">
-	<p class="text-md whitespace-nowrap">
-		This is me
-	</p>
+<div class="flex w-full items-center gap-3">
+	<p class="text-md whitespace-nowrap">This is me</p>
 
-	<div class="flex-1 h-0.5 bg-blue-600 rounded-md"></div>
+	<div class="h-0.5 flex-1 rounded-md bg-blue-600"></div>
 
-	<p class="whitespace-nowrap text-sm">
+	<p class="text-sm whitespace-nowrap">
 		Last updated: {lastUpdated}
 	</p>
 </div>
-

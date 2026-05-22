@@ -4,13 +4,13 @@
 	import { tick, onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { ArrowUpRight } from 'lucide-svelte';
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 
 	onMount(() => {
 		window.scrollTo(0, 0);
 	});
 
-	let { data } = $props() as { data: PageData };
+	let { data }: PageProps = $props();
 	const meta = $derived(data.meta);
 	const Content = $derived(data.content);
 
@@ -99,15 +99,19 @@
 	<meta name="twitter:image" content={pageImage} />
 </svelte:head>
 
-<div class="w-full max-w-full flex flex-col lg:flex-row lg:flex-nowrap lg:gap-6 lg:max-w-5xl mx-auto px-4 sm:px-6 pb-12">
-	<div class="hidden lg:block w-48 shrink-0" aria-hidden="true"></div>
-	<article class="min-w-0 flex-1 w-full max-w-full lg:max-w-2xl mx-auto lg:mx-0 lg:px-6 overflow-x-clip">
+<div
+	class="mx-auto flex w-full max-w-full flex-col px-4 pb-12 sm:px-6 lg:max-w-5xl lg:flex-row lg:flex-nowrap lg:gap-6"
+>
+	<div class="hidden w-48 shrink-0 lg:block" aria-hidden="true"></div>
+	<article
+		class="mx-auto w-full max-w-full min-w-0 flex-1 overflow-x-clip lg:mx-0 lg:max-w-2xl lg:px-6"
+	>
 		<nav class="pt-4 pb-6">
 			<a href={base + '/'} class="text-sm text-gray-500 hover:text-gray-700">← back to home</a>
 		</nav>
 		<header class="mb-8">
 			<h1 class="text-2xl font-medium text-gray-900">{meta.heading}</h1>
-			<p class="text-sm text-gray-500 mt-1">
+			<p class="mt-1 text-sm text-gray-500">
 				{meta.role}
 				{#if meta.period}
 					· {meta.period}
@@ -119,7 +123,7 @@
 						href={meta.externalLink}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-blue-600 hover:underline inline-flex items-center gap-1.5 text-sm"
+						class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:underline"
 					>
 						Visit site
 						<ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
@@ -130,19 +134,15 @@
 
 		{#if meta.image}
 			<figure
-				class="work-img work-hero-transition rounded-xl overflow-hidden border border-gray-200 shadow-md mb-8"
+				class="work-img work-hero-transition mb-8 overflow-hidden rounded-xl border border-gray-200 shadow-md"
 			>
-				<img
-					src={meta.image}
-					alt={meta.title}
-					class="w-full h-auto block"
-				/>
+				<img src={meta.image} alt={meta.title} class="block h-auto w-full" />
 			</figure>
 		{/if}
 
 		<div
 			bind:this={bodyEl}
-			class="prose prose-sm prose-img:max-w-full prose-blockquote:max-w-full prose-pre:max-w-full text-gray-700 prose-p:text-gray-700 prose-headings:text-gray-900 prose-headings:font-medium prose-img:rounded-xl prose-img:overflow-hidden prose-img:border prose-img:border-gray-200 prose-img:shadow-md prose-img:w-full prose-img:h-auto prose-img:block prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:!bg-white prose-pre:text-inherit work-prose max-w-full"
+			class="work-prose prose prose-sm max-w-full text-gray-700 prose-headings:font-medium prose-headings:text-gray-900 prose-p:text-gray-700 prose-blockquote:max-w-full prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:!bg-white prose-pre:text-inherit prose-img:block prose-img:h-auto prose-img:w-full prose-img:max-w-full prose-img:overflow-hidden prose-img:rounded-xl prose-img:border prose-img:border-gray-200 prose-img:shadow-md"
 		>
 			{#if Content}
 				<Content />
@@ -152,10 +152,15 @@
 		</div>
 	</article>
 
-	<aside class="hidden lg:block w-48 shrink-0 pt-20" aria-hidden={tocItems.length === 0 ? 'true' : undefined}>
+	<aside
+		class="hidden w-48 shrink-0 pt-20 lg:block"
+		aria-hidden={tocItems.length === 0 ? 'true' : undefined}
+	>
 		{#if tocItems.length > 0}
 			<nav aria-label="In this post" class="sticky top-24">
-				<h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">In this post</h2>
+				<h2 class="mb-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+					In this post
+				</h2>
 				<ul class="space-y-2 text-sm">
 					{#each tocItems as item (item.id)}
 						<li class={item.level === 3 ? 'pl-3' : ''}>
@@ -169,7 +174,9 @@
 									el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 									history.replaceState(null, '', `#${item.id}`);
 								}}
-								class="block transition-colors {activeId === item.id ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}"
+								class="block transition-colors {activeId === item.id
+									? 'font-medium text-gray-900'
+									: 'text-gray-600 hover:text-gray-900'}"
 							>
 								{item.text}
 							</a>

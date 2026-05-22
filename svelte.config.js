@@ -1,19 +1,19 @@
-import adapter from "svelte-adapter-bun";
-import { mdsvex } from "mdsvex";
-import rehypeSlug from "rehype-slug";
-import { createHighlighter } from "@svelte-dev/pretty-code";
+import adapter from 'svelte-adapter-bun';
+import { mdsvex } from 'mdsvex';
+import rehypeSlug from 'rehype-slug';
+import { createHighlighter } from '@svelte-dev/pretty-code';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: [".svelte", ".md"],
+	extensions: ['.svelte', '.md'],
 	preprocess: [
 		mdsvex({
-			extensions: [".md"],
+			extensions: ['.md'],
 			highlight: {
 				highlighter: createHighlighter({
 					theme: {
-						light: "github-light",
-						dark: "github-dark-dimmed"
+						light: 'github-light',
+						dark: 'github-dark-dimmed'
 					},
 					keepBackground: true
 				})

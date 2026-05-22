@@ -9,6 +9,6 @@ order: 1
 hue: 243
 ---
 
-Course project in *Applikasjonsutvikling* at NTNU, 4. semester.
+Course project in _Applikasjonsutvikling_ at NTNU, 4. semester.
 
 A proper writeup of the project, the team, and what we built is coming soon.

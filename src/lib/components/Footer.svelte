@@ -2,6 +2,6 @@
 	const year = new Date().getFullYear();
 </script>
 
-<footer class="w-full px-4 sm:px-6 py-3 flex flex-row justify-start items-center gap-3">
+<footer class="flex w-full flex-row items-center justify-start gap-3 px-4 py-3 sm:px-6">
 	<p class="text-sm">© {year} Iver Lindholm. All rights reserved</p>
 </footer>

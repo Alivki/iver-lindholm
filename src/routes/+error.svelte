@@ -12,19 +12,19 @@
 	<title>{is404 ? 'Page not found' : 'Error'} · Iver Lindholm</title>
 </svelte:head>
 
-<div class="flex-1 flex flex-col justify-center px-4 sm:px-6 py-12">
-		<div class="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-		<p class="text-blue-600 text-sm font-medium mb-2">
+<div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6">
+	<div class="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
+		<p class="mb-2 text-sm font-medium text-blue-600">
 			{is404 ? '404' : status}
 		</p>
-		<h1 class="text-xl font-medium text-gray-900 mb-2">
+		<h1 class="mb-2 text-xl font-medium text-gray-900">
 			{is404 ? 'Page not found' : 'Something went wrong'}
 		</h1>
-		<p class="text-sm text-gray-600 max-w-md">
+		<p class="max-w-md text-sm text-gray-600">
 			{is404
 				? 'The page you’re looking for doesn’t exist or has been moved.'
 				: message || 'An unexpected error occurred.'}
 		</p>
-		<a href={base + '/'} class="text-sm text-blue-600 hover:underline mt-6">← back to home</a>
+		<a href={base + '/'} class="mt-6 text-sm text-blue-600 hover:underline">← back to home</a>
 	</div>
 </div>

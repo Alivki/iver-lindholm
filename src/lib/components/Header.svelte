@@ -3,10 +3,10 @@
 	import { base } from '$app/paths';
 </script>
 
-<header class="w-full px-4 sm:px-6 py-3 flex flex-row justify-start items-center gap-3">
+<header class="flex w-full flex-row items-center justify-start gap-3 px-4 py-3 sm:px-6">
 	<a
 		href={base + '/'}
-		class="flex flex-row items-center gap-3 no-underline text-inherit hover:opacity-80 transition-opacity"
+		class="flex flex-row items-center gap-3 text-inherit no-underline transition-opacity hover:opacity-80"
 	>
 		<img class="h-10" src="/logo.png" alt="" />
 		<span class="text-lg font-medium">Iver Lindholm</span>

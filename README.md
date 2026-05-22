@@ -18,15 +18,15 @@ Welcome to my spot on the world wide web! This is my portfolio website, built wi
 
 This portfolio is powered by modern and lightweight tools:
 
-| Category                  | Technology       |
-| ------------------------- | ---------------- |
-| Framework                 | SvelteKit        |
-| Runtime                   | Bun              |
-| Styling                   | Tailwind CSS     |
-| Content                   | MDsveX           |
-| Deployment                | Railway          |
-| Version Control           | Git              |
-| Linting / Code Quality    | ESLint, Prettier |
+| Category               | Technology       |
+| ---------------------- | ---------------- |
+| Framework              | SvelteKit        |
+| Runtime                | Bun              |
+| Styling                | Tailwind CSS     |
+| Content                | MDsveX           |
+| Deployment             | Railway          |
+| Version Control        | Git              |
+| Linting / Code Quality | ESLint, Prettier |
 
 ## Getting Started ⚙️
 
@@ -84,11 +84,11 @@ iver-lindholm/
 
 I'd love to connect — whether you're interested in collaboration, have feedback, or just want to say hello!
 
-| Platform               | Link                                                                 |
-| ---------------------- | -------------------------------------------------------------------- |
-| 📧 Email               | [iver.lindholm@gmail.com](mailto:iver.lindholm@gmail.com)            |
+| Platform               | Link                                                                        |
+| ---------------------- | --------------------------------------------------------------------------- |
+| 📧 Email               | [iver.lindholm@gmail.com](mailto:iver.lindholm@gmail.com)                   |
 | 💼 LinkedIn            | [linkedin.com/in/iver-lindholm](https://www.linkedin.com/in/iver-lindholm/) |
-| 🌐 Portfolio / Website | [iverlindholm.no](https://iverlindholm.no)                           |
+| 🌐 Portfolio / Website | [iverlindholm.no](https://iverlindholm.no)                                  |
 
 ## License 📝
 
